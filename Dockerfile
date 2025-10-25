@@ -1,6 +1,14 @@
 # Use an official Python runtime as the parent image
 FROM python:3.10-slim-bullseye
-RUN apt-get update && apt-get install -y ffmpeg
+
+# Install system dependencies including build tools
+RUN apt-get update && apt-get install -y \
+  ffmpeg \
+  gcc \
+  g++ \
+  make \
+  build-essential \
+  && rm -rf /var/lib/apt/lists/*
 
 # Set the working directory in the container to /app
 WORKDIR /app
